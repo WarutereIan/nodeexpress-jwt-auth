@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
-
+const MONGO_URI = port.env.MONGO_URI
 const app = express();
 
 // middleware
@@ -14,8 +14,8 @@ app.use(cookieParser())
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://warutere-dev:MwUlxegL50IihOgD@cluster0.gmu7o.mongodb.net/?retryWrites=true&w=majority';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
+
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex:true })
   .then((result) => app.listen(3000,
     ()=>{console.log('server started')}))
   .catch((err) => console.log(err));
